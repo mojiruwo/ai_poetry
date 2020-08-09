@@ -22,3 +22,8 @@ for line in lines:
     poetry.append(last_part.replace('\n', ''))
 
 counter = Counter()
+
+for line in poetry:
+    counter.update(line)
+
+
