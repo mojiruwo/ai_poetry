@@ -1,5 +1,8 @@
 import settings
 from collections import Counter
+import numpy as np
+from tokenizer import Tokenizer
+
 # 禁用词
 disallowed_words = settings.DISALLOWED_WORDS
 # 句子最大长度
@@ -11,7 +14,7 @@ batch_size = settings.BATCH_SIZE
 
 with open(settings.DATASET_PATH, 'r', encoding='utf-8') as f:
     lines = f.readlines()
-    lines = [line.replace('：',':') for line in lines]
+    lines = [line.replace('：', ':') for line in lines]
 
 poetry = []
 
@@ -26,4 +29,11 @@ counter = Counter()
 for line in poetry:
     counter.update(line)
 
+_tokens = sorted(counter.items(), key=lambda x: -x[1])
+_tokens = [token for token, count in _tokens]
 
+_tokens = ['[A]', '[B]', '[C]', '[D]'] + _tokens
+
+token_id_dict = dict(zip(_tokens, range(len(_tokens))))
+tokenizer = Tokenizer(token_id_dict)
+np.random.shuffle(poetry)
