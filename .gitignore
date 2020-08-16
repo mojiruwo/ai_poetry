@@ -1,2 +1,3 @@
 .idea/
 poetry_test.txt
+__pycache__/

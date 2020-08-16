@@ -32,7 +32,7 @@ for line in poetry:
 _tokens = sorted(counter.items(), key=lambda x: -x[1])
 _tokens = [token for token, count in _tokens]
 
-_tokens = ['[A]', '[B]', '[C]', '[D]'] + _tokens
+_tokens = ['[PAD]', '[UNK]', '[CLS]', '[SEP]'] + _tokens
 
 token_id_dict = dict(zip(_tokens, range(len(_tokens))))
 tokenizer = Tokenizer(token_id_dict)
