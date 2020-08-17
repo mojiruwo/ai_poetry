@@ -1,7 +1,7 @@
 import settings
 import math
 import numpy as np
-from tokenizer import Tokenizer
+from datadict import tokenizer
 import tensorflow as tf
 
 class PoetryDataGenerator:
@@ -21,7 +21,7 @@ class PoetryDataGenerator:
             length = max(map(len,data))
 
         if padding is None:
-            padding = Tokenizer.token_to_id('[PAD]')
+            padding = tokenizer.token_to_id('[PAD]')
 
         outputs = []
         for line in data:
@@ -42,11 +42,11 @@ class PoetryDataGenerator:
             end = min(start + self.batch_size , total)
             batch_data = []
             for single_data in self.data[start:end]:
-                batch_data.append(Tokenizer.encode(single_data))
+                batch_data.append(tokenizer.encode(single_data))
 
         batch_data = self.sequence_padding(batch_data)
 
-        yield batch_data[:, :-1], tf.one_hot(batch_data[:, 1:], Tokenizer.vocab_size)
+        yield batch_data[:, :-1], tf.one_hot(batch_data[:, 1:], tokenizer.vocab_size)
 
         del batch_data
 

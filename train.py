@@ -12,7 +12,7 @@ class Evaluate(tf.keras.callbacks.Callback):
         super().__init__()
         self.lowest = 1e10
 
-    def on_epotch_end(self,epoch, logs = None):
+    def on_epoch_end(self,epoch, logs = None):
         if logs['loss'] < self.lowest:
             self.lowest = logs['loss']
             model.save(settings.BEST_MODEL_PATH)
@@ -23,4 +23,4 @@ class Evaluate(tf.keras.callbacks.Callback):
 data_generator = PoetryDataGenerator(datadict.poetry, random=True)
 # 处理数据字典
 #
-model.fit_generator(data_generator.for_fit(),steps_per_epoch=data_generator.step,epochs=settings.TRAIN_EPOCHS,callbacks=[Evaluate()])
+model.fit_generator(data_generator.for_fit(), steps_per_epoch=data_generator.step, epochs=settings.TRAIN_EPOCHS, callbacks=[Evaluate()])

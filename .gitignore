@@ -1,3 +1,4 @@
 .idea/
 poetry_test.txt
 __pycache__/
+*.h5
