@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import settings
 import numpy as np
 def generate_random_poetry(tokenizer, model, s=''):

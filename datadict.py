@@ -1,7 +1,10 @@
+# -*- coding: utf-8 -*-
 import settings
 from collections import Counter
 import numpy as np
 from tokenizer import Tokenizer
+from pathlib import Path
+import os
 
 # 禁用词
 disallowed_words = settings.DISALLOWED_WORDS
@@ -11,8 +14,8 @@ max_len = settings.MAX_LEN
 min_word_frequency = settings.MIN_WORD_FREQUENCY
 # mini batch 大小
 batch_size = settings.BATCH_SIZE
-
-with open(settings.DATASET_PATH, 'r', encoding='utf-8') as f:
+path1 = os.path.abspath(os.path.dirname(__file__))
+with open(Path(path1) / settings.DATASET_PATH, 'r', encoding='utf-8') as f:
     lines = f.readlines()
     lines = [line.replace('：', ':') for line in lines]
 

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import tensorflow as tf
 
 from datadict import tokenizer
@@ -10,6 +11,6 @@ model = tf.keras.Sequential([
     tf.keras.layers.TimeDistributed(tf.keras.layers.Dense(tokenizer.vocab_size, activation='softmax')),
 ])
 
-model.summary()
+#model.summary()
 
 model.compile(optimizer=tf.keras.optimizers.Adam(),loss=tf.keras.losses.categorical_crossentropy)
