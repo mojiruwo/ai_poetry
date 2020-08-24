@@ -24,7 +24,16 @@ poetry = []
 for line in lines:
     if line.count(':') != 1:
         continue
+    ignore_flag = False
     _, last_part = line.split(':')
+    for dis_word in disallowed_words:
+        if dis_word in last_part:
+            ignore_flag = True
+            break
+    if ignore_flag:
+        continue
+    if len(last_part) > max_len - 2:
+        continue
     poetry.append(last_part.replace('\n', ''))
 
 counter = Counter()
