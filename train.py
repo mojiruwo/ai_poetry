@@ -21,7 +21,7 @@ class Evaluate(tf.keras.callbacks.Callback):
 
         print()
         for i in range(settings.SHOW_NUM):
-            print(utils.generate_random_poetry(datadict.poetry, model))
+            print(utils.generate_random_poetry(datadict.tokenizer, model))
 
 # 创建数据字典
 data_generator = PoetryDataGenerator(datadict.poetry, random=True)

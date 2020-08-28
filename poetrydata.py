@@ -44,12 +44,10 @@ class PoetryDataGenerator:
             batch_data = []
             for single_data in self.data[start:end]:
                 batch_data.append(tokenizer.encode(single_data))
+            batch_data = self.sequence_padding(batch_data)
+            yield batch_data[:, :-1], tf.one_hot(batch_data[:, 1:], tokenizer.vocab_size)
 
-        batch_data = self.sequence_padding(batch_data)
-
-        yield batch_data[:, :-1], tf.one_hot(batch_data[:, 1:], tokenizer.vocab_size)
-
-        del batch_data
+            del batch_data
 
 
     def for_fit(self):
